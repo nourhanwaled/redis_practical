@@ -33,7 +33,14 @@ mongoose
     console.log("err:", err);
   });
 
-app.get("/", (req, res) => res.send("<h1>Hello Nour h111</h1>"));
+app.get("/", (req, res) => {
+  client.set("products", "products...");
+  res.send("<h1>Hello Nour h111</h1>");
+});
+app.get("/data", async (req, res) => {
+  const products = await client.get("products");
+  res.send(`<h1>Hello Nour h111</h1> products ${products}`);
+});
 
 app.listen(PORT, () => {
   console.log(`App is running on port ${PORT}`);
